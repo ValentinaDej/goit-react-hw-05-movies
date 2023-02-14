@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 import { getDailyPopularFilms } from '../../shared/Services/filmApi';
+import FilmsList from 'modules/FilmsList/FilmsList';
 
 const Films = () => {
   const [state, setState] = useState({
@@ -23,11 +24,16 @@ const Films = () => {
         setState(prevState => {
           return {
             ...prevState,
-            items: [...prevState.items, ...result],
+            items: [...result],
           };
         });
       } catch (error) {
-        setState({ ...state, error });
+        setState(prevState => {
+          return {
+            ...prevState,
+            error,
+          };
+        });
       } finally {
         setState(prevState => {
           return {
@@ -37,19 +43,15 @@ const Films = () => {
         });
       }
     };
+
     fetchFilms();
   }, []);
 
   const { items, loading, error } = state;
-  const elements = items.map((id, title) => (
-    <li key={id}>
-      <Link to={`/movies/${id}`}>{title}</Link>
-    </li>
-  ));
+
   return (
     <div>
-      <p>Hello</p>
-      <ol>{elements}</ol>
+      {items.length > 0 && <FilmsList items={items} />}
       {loading && <p>...loading films</p>}
       {error && <p>...films load faild</p>}
     </div>

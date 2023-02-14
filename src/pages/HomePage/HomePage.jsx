@@ -1,4 +1,4 @@
-import Films from 'modules/Films/Fims';
+import Films from 'modules/Films/Films';
 
 const HomePage = () => {
   return (
