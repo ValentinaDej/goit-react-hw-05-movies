@@ -27,8 +27,30 @@ export const getFilmById = async id => {
     },
   });
 
-  console.log(data.data);
+  // console.log(data.data);
   return data.data;
+};
+
+export const getFilmCreditsById = async id => {
+  const data = await instance.get(`movie/${id}/credits`, {
+    params: {
+      api_key,
+    },
+  });
+
+  //console.log(data.data.cast);
+  return data.data.cast;
+};
+
+export const getFilmReviewsById = async id => {
+  const data = await instance.get(`movie/${id}/reviews`, {
+    params: {
+      api_key,
+    },
+  });
+
+  console.log(data.data.results);
+  return data.data.results;
 };
 
 export const getFilmByKeyWords = async query => {
@@ -39,6 +61,6 @@ export const getFilmByKeyWords = async query => {
     },
   });
 
-  console.log(data.data.results);
+  // console.log(data.data.results);
   return data.data.results;
 };

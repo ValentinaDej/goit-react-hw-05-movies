@@ -1,4 +1,10 @@
-import { useParams, useNavigate } from 'react-router-dom';
+import {
+  useParams,
+  useNavigate,
+  Link,
+  Outlet,
+  useLocation,
+} from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
 import { getFilmById } from '../../shared/Services/filmApi';
@@ -12,6 +18,9 @@ const MovieDetails = () => {
 
   const { movieId } = useParams();
   const navigate = useNavigate();
+
+  const location = useLocation();
+  const { from } = location.state;
 
   useEffect(() => {
     const fetchFilms = async () => {
@@ -49,7 +58,8 @@ const MovieDetails = () => {
     fetchFilms();
   }, []);
 
-  const goBack = () => navigate(-1);
+  //const goBack = () => navigate(-1);
+  const goBack = () => navigate(from);
 
   const { title, overview, vote_average, genres, poster_path } = state.item;
 
@@ -72,6 +82,13 @@ const MovieDetails = () => {
         <p>{vote}%</p>
         <p>{overview}</p>
         <ul>{genresElemetns}</ul>
+        <Link state={{ from }} to={`/movies/${movieId}/cast`}>
+          <span>Cast</span>
+        </Link>
+        <Link state={{ from }} to={`/movies/${movieId}/reviews`}>
+          <span>Reviews</span>
+        </Link>
+        <Outlet />
       </div>
     </>
   );
