@@ -46,7 +46,7 @@ const MovieDetailsReview = () => {
     };
 
     fetchFilms();
-  }, []);
+  }, [movieId, state]);
 
   const { items } = state;
 
