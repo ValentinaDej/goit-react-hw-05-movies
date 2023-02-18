@@ -19,9 +19,6 @@ const MovieDetails = () => {
   const { movieId } = useParams();
   const navigate = useNavigate();
 
-  const location = useLocation();
-  const from = location.state?.from || '/';
-
   useEffect(() => {
     const fetchFilms = async () => {
       setState({
@@ -56,9 +53,10 @@ const MovieDetails = () => {
     };
 
     fetchFilms();
-  }, []);
+  }, [movieId, state]);
 
-  //const goBack = () => navigate(-1);
+  const location = useLocation();
+  const from = location.state?.from || '/';
   const goBack = () => navigate(from);
 
   const { title, overview, vote_average, genres, poster_path } = state.item;

@@ -14,7 +14,7 @@ const NotFoundPage = lazy(() => import('pages/NotFoundPage/NotFoundPage'));
 
 const UserRoutes = () => {
   return (
-    <Suspense>
+    <Suspense fallback={<p>...Load page</p>}>
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/movies" element={<Movies />} />
