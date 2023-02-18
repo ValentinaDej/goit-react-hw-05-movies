@@ -26,8 +26,6 @@ export const getFilmById = async id => {
       api_key,
     },
   });
-
-  // console.log(data.data);
   return data.data;
 };
 
@@ -37,8 +35,6 @@ export const getFilmCreditsById = async id => {
       api_key,
     },
   });
-
-  //console.log(data.data.cast);
   return data.data.cast;
 };
 
@@ -48,8 +44,6 @@ export const getFilmReviewsById = async id => {
       api_key,
     },
   });
-
-  console.log(data.data.results);
   return data.data.results;
 };
 
@@ -60,7 +54,5 @@ export const getFilmByKeyWords = async query => {
       query,
     },
   });
-
-  // console.log(data.data.results);
   return data.data.results;
 };

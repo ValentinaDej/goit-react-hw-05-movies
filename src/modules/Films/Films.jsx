@@ -51,7 +51,7 @@ const Films = () => {
   return (
     <div>
       {items.length > 0 && <FilmsList items={items} />}
-      {loading && <p>...loading films</p>}
+      {/* {loading && <p>...loading films</p>} */}
       {error && <p>...films load faild</p>}
     </div>
   );
