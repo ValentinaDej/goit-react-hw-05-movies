@@ -1,4 +1,4 @@
-import { useParams, useNavigate, Link } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
 import { getFilmCreditsById } from '../../shared/Services/filmApi';
@@ -46,7 +46,7 @@ const MovieDetailsCast = () => {
     };
 
     fetchFilms();
-  }, []);
+  }, [movieId, state]);
 
   const { items } = state;
 
@@ -57,7 +57,10 @@ const MovieDetailsCast = () => {
           <span>{original_name}</span>
           <span>{character}</span>
           {profile_path && (
-            <img src={`https://image.tmdb.org/t/p/w200/${profile_path}`} />
+            <img
+              src={`https://image.tmdb.org/t/p/w200/${profile_path}`}
+              alt={original_name}
+            />
           )}
         </li>
       );
