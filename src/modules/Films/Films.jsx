@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 
 import { getDailyPopularFilms } from '../../shared/Services/filmApi';
 import FilmsList from 'modules/FilmsList/FilmsList';
@@ -45,7 +44,7 @@ const Films = () => {
     };
 
     fetchFilms();
-  }, []);
+  }, [state]);
 
   const { items, loading, error } = state;
 
