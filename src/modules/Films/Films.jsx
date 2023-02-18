@@ -6,7 +6,7 @@ import FilmsList from 'modules/FilmsList/FilmsList';
 const Films = () => {
   const [state, setState] = useState({
     items: [],
-    loading: false,
+    // loading: false,
     error: null,
   });
 
@@ -14,7 +14,7 @@ const Films = () => {
     const fetchFilms = async () => {
       setState({
         ...state,
-        loading: true,
+        // loading: true,
         error: null,
       });
 
@@ -37,7 +37,7 @@ const Films = () => {
         setState(prevState => {
           return {
             ...prevState,
-            loading: false,
+            // loading: false,
           };
         });
       }
@@ -46,7 +46,7 @@ const Films = () => {
     fetchFilms();
   }, [state]);
 
-  const { items, loading, error } = state;
+  const { items, error } = state;
 
   return (
     <div>
