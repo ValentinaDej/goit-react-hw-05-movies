@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
+import { Notify } from 'notiflix';
 import PropTypes from 'prop-types';
 
 import FilmSearchForm from 'modules/FilmSearchForm/FilmSearchForm';
@@ -20,6 +21,11 @@ const Movies = () => {
       try {
         setLoading(true);
         const result = await getFilmByKeyWords(search);
+        if (!result.length) {
+          Notify.failure('No found');
+          setItems([]);
+          return;
+        }
         setItems([...result]);
       } catch (error) {
         setError(error.message);
