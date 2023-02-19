@@ -56,3 +56,5 @@ MovieDetailsReview.propTypes = {
   author: PropTypes.string,
   content: PropTypes.string,
 };
+
+console.log('upd');
