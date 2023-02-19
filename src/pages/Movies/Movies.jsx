@@ -6,11 +6,9 @@ import FilmsList from 'modules/FilmsList/FilmsList';
 import { getFilmByKeyWords } from '../../shared/Services/filmApi';
 
 const Movies = () => {
-  const [state, setState] = useState({
-    items: [],
-    loading: false,
-    error: null,
-  });
+  const [items, setItems] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   const [searchParams, setSearhParams] = useSearchParams();
   const search = searchParams.get('search');
@@ -18,31 +16,32 @@ const Movies = () => {
   useEffect(() => {
     const fetchFilms = async () => {
       try {
-        setState(prevState => ({ ...prevState, loading: true }));
-        const data = await getFilmByKeyWords(search);
-        setState(prevState => ({ ...prevState, items: data }));
+        setLoading(true);
+        const result = await getFilmByKeyWords(search);
+        setItems([...result]);
       } catch (error) {
-        setState(prevState => ({ ...prevState, error }));
+        setError(error.message);
       } finally {
-        setState(prevState => ({ ...prevState, loading: false }));
+        setLoading(false);
       }
     };
 
     if (search) {
       fetchFilms();
     }
-  }, [search]);
+  }, [search, setItems, setLoading, setError]);
 
   const changeSearch = ({ search }) => {
     setSearhParams({ search });
   };
 
-  const { items } = state;
   return (
     <div>
       Search Movies page
       <FilmSearchForm onSubmit={changeSearch} />
       {items.length > 0 && <FilmsList items={items} />}
+      {loading && <p>...loading films</p>}
+      {error && <p>...films load faild</p>}
     </div>
   );
 };

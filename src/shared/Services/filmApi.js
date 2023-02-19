@@ -47,11 +47,12 @@ export const getFilmReviewsById = async id => {
   return data.data.results;
 };
 
-export const getFilmByKeyWords = async query => {
+export const getFilmByKeyWords = async (query, page = 1) => {
   const data = await instance.get(`search/movie`, {
     params: {
       api_key,
       query,
+      page,
     },
   });
   return data.data.results;

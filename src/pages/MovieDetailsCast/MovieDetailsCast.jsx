@@ -4,53 +4,28 @@ import { useState, useEffect } from 'react';
 import { getFilmCreditsById } from '../../shared/Services/filmApi';
 
 const MovieDetailsCast = () => {
-  const [state, setState] = useState({
-    items: [],
-    loading: false,
-    error: null,
-  });
-
+  const [filmCast, setFilmCast] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
   const { movieId } = useParams();
 
   useEffect(() => {
     const fetchFilms = async () => {
-      setState({
-        ...state,
-        loading: true,
-        error: null,
-      });
-
       try {
+        setLoading(true);
         const result = await getFilmCreditsById(movieId);
-        setState(prevState => {
-          return {
-            ...prevState,
-            items: [...result],
-          };
-        });
+        setFilmCast([...result]);
       } catch (error) {
-        setState(prevState => {
-          return {
-            ...prevState,
-            error,
-          };
-        });
+        setError(error.message);
       } finally {
-        setState(prevState => {
-          return {
-            ...prevState,
-            loading: false,
-          };
-        });
+        setLoading(false);
       }
     };
 
     fetchFilms();
-  }, [movieId, state]);
+  }, [movieId, setFilmCast, setLoading, setError]);
 
-  const { items } = state;
-
-  const elements = items.map(
+  const elements = filmCast.map(
     ({ cast_id, original_name, character, profile_path }) => {
       return (
         <li key={cast_id}>
@@ -70,7 +45,13 @@ const MovieDetailsCast = () => {
   return (
     <>
       <div>
-        <section>{elements}</section>
+        {elements.length > 0 ? (
+          <div> {elements}</div>
+        ) : (
+          <div>We dont have any cast information</div>
+        )}
+        {loading && <p>...loading films</p>}
+        {error && <p>...films load faild</p>}
       </div>
     </>
   );

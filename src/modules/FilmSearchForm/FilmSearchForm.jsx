@@ -1,26 +1,20 @@
-import { useState } from 'react';
+import { memo } from 'react';
+
+import useForm from 'shared/hooks/useForm';
+import initialState from './initialState';
 
 const FilmSearchForm = ({ onSubmit }) => {
-  const [state, setState] = useState({ search: '' });
+  const { state, handleChange, handleSubmit } = useForm({
+    initialState,
+    onSubmit,
+  });
 
-  const handleChange = ({ target }) => {
-    const { name, value } = target;
-    setState({
-      ...state,
-      [name]: value,
-    });
-  };
-
-  const handleSubmit = e => {
-    e.preventDefault();
-    onSubmit({ ...state });
-    setState({ search: '' });
-  };
+  const { search } = state;
 
   return (
     <form onSubmit={handleSubmit}>
       <input
-        value={state.search}
+        value={search}
         onChange={handleChange}
         type="text"
         placeholder="input text..."
@@ -32,4 +26,4 @@ const FilmSearchForm = ({ onSubmit }) => {
   );
 };
 
-export default FilmSearchForm;
+export default memo(FilmSearchForm);

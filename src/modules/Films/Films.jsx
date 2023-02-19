@@ -11,9 +11,9 @@ const Films = () => {
   useEffect(() => {
     const fetchFilms = async () => {
       try {
+        setLoading(true);
         const result = await getDailyPopularFilms();
         setItems([...result]);
-        setLoading(true);
       } catch (error) {
         setError(error.message);
       } finally {

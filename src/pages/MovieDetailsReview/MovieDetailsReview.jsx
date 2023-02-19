@@ -4,53 +4,28 @@ import { useState, useEffect } from 'react';
 import { getFilmReviewsById } from '../../shared/Services/filmApi';
 
 const MovieDetailsReview = () => {
-  const [state, setState] = useState({
-    items: [],
-    loading: false,
-    error: null,
-  });
-
+  const [filmReview, setFilmReview] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
   const { movieId } = useParams();
 
   useEffect(() => {
     const fetchFilms = async () => {
-      setState({
-        ...state,
-        loading: true,
-        error: null,
-      });
-
       try {
+        setLoading(true);
         const result = await getFilmReviewsById(movieId);
-        setState(prevState => {
-          return {
-            ...prevState,
-            items: [...result],
-          };
-        });
+        setFilmReview([...result]);
       } catch (error) {
-        setState(prevState => {
-          return {
-            ...prevState,
-            error,
-          };
-        });
+        setError(error.message);
       } finally {
-        setState(prevState => {
-          return {
-            ...prevState,
-            loading: false,
-          };
-        });
+        setLoading(false);
       }
     };
 
     fetchFilms();
-  }, [movieId, state]);
+  }, [movieId, setFilmReview, setLoading, setError]);
 
-  const { items } = state;
-
-  const elements = items.map(({ id, author, content }) => {
+  const elements = filmReview.map(({ id, author, content }) => {
     return (
       <li key={id}>
         <span>{author}</span>
@@ -66,6 +41,8 @@ const MovieDetailsReview = () => {
       ) : (
         <div>We dont have any reviews</div>
       )}
+      {loading && <p>...loading films</p>}
+      {error && <p>...films load faild</p>}
     </section>
   );
 };
