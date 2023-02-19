@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 
 import { getFilmReviewsById } from '../../shared/services/filmsApi';
 import Loader from 'modules/Loader/Loader';
+import css from './MovieDetailsReview.module.css';
 
 const MovieDetailsReview = () => {
   const [filmReview, setFilmReview] = useState([]);
@@ -30,8 +31,8 @@ const MovieDetailsReview = () => {
   const elements = filmReview.map(({ id, author, content }) => {
     return (
       <li key={id}>
-        <span>{author}</span>
-        <span>{content}</span>
+        <div className={css.reviewCardAuthor}>Author: {author}</div>
+        <div className={css.reviewCardContent}>{content}</div>
       </li>
     );
   });
@@ -39,7 +40,7 @@ const MovieDetailsReview = () => {
   return (
     <section>
       {elements.length > 0 ? (
-        <div> {elements}</div>
+        <ul className={css.reviewCard}> {elements}</ul>
       ) : (
         <div>We dont have any reviews</div>
       )}

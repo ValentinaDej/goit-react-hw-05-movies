@@ -10,6 +10,7 @@ import PropTypes from 'prop-types';
 
 import { getFilmById } from '../../shared/services/filmsApi';
 import Loader from 'modules/Loader/Loader';
+import css from './MovieDetails.module.css';
 
 const MovieDetails = () => {
   const [film, setFilm] = useState();
@@ -44,32 +45,51 @@ const MovieDetails = () => {
     const vote = Math.round(vote_average * 10);
 
     const genresElemetns = genres.map(({ id, name }) => {
-      return <li key={id}>{name}</li>;
+      return (
+        <li key={id} className={css.filmGenresElement}>
+          {name}
+        </li>
+      );
     });
 
-    const imgUrl = poster_path
-      ? `https://image.tmdb.org/t/p/original/${poster_path}`
-      : '';
     return (
-      <>
-        <button onClick={goBack}> Go back</button>
-        <div>
-          <img src={imgUrl} alt={title} width="200px" />
-          <p>{title}</p>
-          <p>{vote}%</p>
-          <p>{overview}</p>
-          <ul>{genresElemetns}</ul>
+      <section className={css.filmSection}>
+        <button onClick={goBack} className={css.goBackBtn}>
+          ⇠ Go back
+        </button>
+        <div className={css.filmInfo}>
+          <div>
+            {poster_path ? (
+              <img
+                src={`https://image.tmdb.org/t/p/original/${poster_path}`}
+                alt={title}
+                width="200px"
+              />
+            ) : (
+              <div className={css.noImage}>Opps... no poster</div>
+            )}
+          </div>
+          <div className={css.filmInfoDetails}>
+            <h2>{title}</h2>
+            <p>User Score: {vote}%</p>
+            <h3>Overview</h3>
+            <p>{overview}</p>
+            <h3>Genres</h3>
+            <ul className={css.filmGenres}>{genresElemetns}</ul>
+          </div>
+        </div>
+        <div className={css.filmIAdditionalnfo}>
           <Link state={{ from }} to={`/movies/${movieId}/cast`}>
-            <span>Cast</span>
+            <div className={css.filmIAdditionalnfoElement}>Cast</div>
           </Link>
           <Link state={{ from }} to={`/movies/${movieId}/reviews`}>
-            <span>Reviews</span>
+            <div className={css.filmIAdditionalnfoElement}>Reviews</div>
           </Link>
-          <Outlet />
-          {loading && <Loader />}
-          {error && <p>...films load faild</p>}
         </div>
-      </>
+        <Outlet />
+        {loading && <Loader />}
+        {error && <p>...films load faild</p>}
+      </section>
     );
   }
 };

@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 
 import { getFilmCreditsById } from '../../shared/services/filmsApi';
 import Loader from 'modules/Loader/Loader';
+import css from './MovieDetailsCast.module.css';
 
 const MovieDetailsCast = () => {
   const [filmCast, setFilmCast] = useState([]);
@@ -30,15 +31,17 @@ const MovieDetailsCast = () => {
   const elements = filmCast.map(
     ({ cast_id, original_name, character, profile_path }) => {
       return (
-        <li key={cast_id}>
-          <span>{original_name}</span>
-          <span>{character}</span>
-          {profile_path && (
+        <li key={cast_id} className={css.castGalleyElement}>
+          {profile_path ? (
             <img
               src={`https://image.tmdb.org/t/p/w200/${profile_path}`}
               alt={original_name}
             />
+          ) : (
+            <div className={css.noImage}>Opps... no image</div>
           )}
+          <p>{original_name}</p>
+          <p>Character: {character}</p>
         </li>
       );
     }
@@ -48,7 +51,7 @@ const MovieDetailsCast = () => {
     <>
       <div>
         {elements.length > 0 ? (
-          <div> {elements}</div>
+          <ul className={css.castGalley}> {elements}</ul>
         ) : (
           <div>We dont have any cast information</div>
         )}

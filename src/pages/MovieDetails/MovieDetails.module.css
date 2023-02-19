@@ -1,0 +1,49 @@
+.filmSection {
+  padding: 15px;
+}
+
+.goBackBtn {
+  cursor: pointer;
+  margin-bottom: 5px;
+}
+
+.filmInfo {
+  border-bottom: 1px solid lightgray;
+  display: flex;
+  padding-bottom: 5px;
+}
+
+.filmInfoDetails {
+  padding-left: 10px;
+}
+
+.filmGenres {
+  list-style: none;
+  display: flex;
+  padding: 0;
+}
+
+.filmGenresElement {
+  padding-right: 10px;
+}
+
+.filmIAdditionalnfo {
+  border-bottom: 1px solid lightgray;
+  display: flex;
+  padding-bottom: 5px;
+  flex-direction: column;
+}
+
+.filmIAdditionalnfoElement {
+  padding-bottom: 5px;
+}
+
+.noImage {
+  width: 200px;
+  height: 300px;
+  background-color: beige;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

@@ -1,0 +1,14 @@
+.reviewCard {
+  list-style: none;
+  padding: 0;
+}
+
+.reviewCardAuthor {
+  margin-bottom: 10px;
+  font-size: medium;
+  font-weight: 500;
+}
+
+.reviewCardContent {
+  margin-bottom: 10px;
+}

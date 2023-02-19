@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 import useForm from 'shared/hooks/useForm';
 import initialState from './initialState';
+import css from './FilmSearchForm.module.css';
 
 const FilmSearchForm = ({ onSubmit }) => {
   const { state, handleChange, handleSubmit } = useForm({
@@ -13,7 +14,7 @@ const FilmSearchForm = ({ onSubmit }) => {
   const { search } = state;
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className={css.form}>
       <input
         value={search}
         onChange={handleChange}
@@ -21,8 +22,9 @@ const FilmSearchForm = ({ onSubmit }) => {
         placeholder="input text..."
         name="search"
         required
+        className={css.input}
       />
-      <button>Find</button>
+      <button>Search</button>
     </form>
   );
 };

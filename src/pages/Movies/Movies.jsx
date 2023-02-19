@@ -39,7 +39,6 @@ const Movies = () => {
 
   return (
     <div>
-      Search Movies page
       <FilmSearchForm onSubmit={changeSearch} />
       {items.length > 0 && <FilmsList items={items} />}
       {loading && <Loader />}

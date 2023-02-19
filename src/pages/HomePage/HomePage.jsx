@@ -1,12 +1,12 @@
 import Films from 'modules/Films/Films';
+import css from './HomePage.module.css';
 
 const HomePage = () => {
   return (
-    <div>
-      <h2>Home page</h2>
-      <p>Daily popular films</p>
+    <>
+      <h2 className={css.title}>Trending today</h2>
       <Films />
-    </div>
+    </>
   );
 };
 
