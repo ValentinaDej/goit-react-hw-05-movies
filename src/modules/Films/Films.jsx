@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
-import { getDailyPopularFilms } from '../../shared/services/filmApi';
+import { getDailyPopularFilms } from '../../shared/services/filmsApi';
 import FilmsList from 'shared/components/FilmsList/FilmsList';
 import Loader from 'modules/Loader/Loader';
 

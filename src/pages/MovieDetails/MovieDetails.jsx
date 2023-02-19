@@ -8,7 +8,7 @@ import {
 import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
-import { getFilmById } from '../../shared/services/filmApi';
+import { getFilmById } from '../../shared/services/filmsApi';
 import Loader from 'modules/Loader/Loader';
 
 const MovieDetails = () => {

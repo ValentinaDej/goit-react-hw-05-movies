@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 import FilmSearchForm from 'modules/FilmSearchForm/FilmSearchForm';
 import FilmsList from 'shared/components/FilmsList/FilmsList';
-import { getFilmByKeyWords } from '../../shared/services/filmApi';
+import { getFilmByKeyWords } from '../../shared/services/filmsApi';
 import Loader from 'modules/Loader/Loader';
 
 const Movies = () => {

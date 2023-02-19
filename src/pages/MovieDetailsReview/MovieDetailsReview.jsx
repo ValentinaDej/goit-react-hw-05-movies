@@ -2,7 +2,7 @@ import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
-import { getFilmReviewsById } from '../../shared/services/filmApi';
+import { getFilmReviewsById } from '../../shared/services/filmsApi';
 import Loader from 'modules/Loader/Loader';
 
 const MovieDetailsReview = () => {
@@ -56,5 +56,3 @@ MovieDetailsReview.propTypes = {
   author: PropTypes.string,
   content: PropTypes.string,
 };
-
-console.log('upd');

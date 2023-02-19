@@ -2,7 +2,7 @@ import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
-import { getFilmCreditsById } from '../../shared/services/filmApi';
+import { getFilmCreditsById } from '../../shared/services/filmsApi';
 import Loader from 'modules/Loader/Loader';
 
 const MovieDetailsCast = () => {
