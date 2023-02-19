@@ -1,7 +1,9 @@
 import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 
-import { getFilmReviewsById } from '../../shared/Services/filmApi';
+import { getFilmReviewsById } from '../../shared/services/filmApi';
+import Loader from 'modules/Loader/Loader';
 
 const MovieDetailsReview = () => {
   const [filmReview, setFilmReview] = useState([]);
@@ -41,10 +43,16 @@ const MovieDetailsReview = () => {
       ) : (
         <div>We dont have any reviews</div>
       )}
-      {loading && <p>...loading films</p>}
+      {loading && <Loader />}
       {error && <p>...films load faild</p>}
     </section>
   );
 };
 
 export default MovieDetailsReview;
+
+MovieDetailsReview.propTypes = {
+  getClassName: PropTypes.func,
+  author: PropTypes.string,
+  content: PropTypes.string,
+};

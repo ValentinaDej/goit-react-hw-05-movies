@@ -1,7 +1,9 @@
 import { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 
-import { getDailyPopularFilms } from '../../shared/Services/filmApi';
-import FilmsList from 'modules/FilmsList/FilmsList';
+import { getDailyPopularFilms } from '../../shared/services/filmApi';
+import FilmsList from 'shared/components/FilmsList/FilmsList';
+import Loader from 'modules/Loader/Loader';
 
 const Films = () => {
   const [items, setItems] = useState([]);
@@ -27,10 +29,14 @@ const Films = () => {
   return (
     <div>
       {items.length > 0 && <FilmsList items={items} />}
-      {loading && <p>...loading films</p>}
+      {loading && <Loader />}
       {error && <p>...films load faild</p>}
     </div>
   );
 };
 
 export default Films;
+
+Films.propTypes = {
+  items: PropTypes.array,
+};

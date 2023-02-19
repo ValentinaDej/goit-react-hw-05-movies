@@ -1,4 +1,5 @@
 import { memo } from 'react';
+import PropTypes from 'prop-types';
 
 import useForm from 'shared/hooks/useForm';
 import initialState from './initialState';
@@ -27,3 +28,9 @@ const FilmSearchForm = ({ onSubmit }) => {
 };
 
 export default memo(FilmSearchForm);
+
+FilmSearchForm.propTypes = {
+  handleSubmit: PropTypes.func,
+  handleChange: PropTypes.func,
+  search: PropTypes.string,
+};

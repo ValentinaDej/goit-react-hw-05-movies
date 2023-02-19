@@ -1,7 +1,9 @@
 import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 
-import { getFilmCreditsById } from '../../shared/Services/filmApi';
+import { getFilmCreditsById } from '../../shared/services/filmApi';
+import Loader from 'modules/Loader/Loader';
 
 const MovieDetailsCast = () => {
   const [filmCast, setFilmCast] = useState([]);
@@ -50,7 +52,7 @@ const MovieDetailsCast = () => {
         ) : (
           <div>We dont have any cast information</div>
         )}
-        {loading && <p>...loading films</p>}
+        {loading && <Loader />}
         {error && <p>...films load faild</p>}
       </div>
     </>
@@ -58,3 +60,10 @@ const MovieDetailsCast = () => {
 };
 
 export default MovieDetailsCast;
+
+MovieDetailsCast.propTypes = {
+  cast_id: PropTypes.string,
+  original_name: PropTypes.string,
+  character: PropTypes.string,
+  profile_path: PropTypes.string,
+};

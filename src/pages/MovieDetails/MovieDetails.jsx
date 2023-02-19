@@ -6,8 +6,10 @@ import {
   useLocation,
 } from 'react-router-dom';
 import { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 
-import { getFilmById } from '../../shared/Services/filmApi';
+import { getFilmById } from '../../shared/services/filmApi';
+import Loader from 'modules/Loader/Loader';
 
 const MovieDetails = () => {
   const [film, setFilm] = useState();
@@ -64,7 +66,7 @@ const MovieDetails = () => {
             <span>Reviews</span>
           </Link>
           <Outlet />
-          {loading && <p>...loading films</p>}
+          {loading && <Loader />}
           {error && <p>...films load faild</p>}
         </div>
       </>
@@ -73,3 +75,12 @@ const MovieDetails = () => {
 };
 
 export default MovieDetails;
+
+MovieDetails.propTypes = {
+  goBack: PropTypes.func,
+  imgUrl: PropTypes.string,
+  title: PropTypes.string,
+  vote: PropTypes.string,
+  from: PropTypes.string,
+  movieId: PropTypes.string,
+};
